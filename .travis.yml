@@ -1,0 +1,27 @@
+language: node_js
+os: linux
+dist: bionic
+cache:
+  yarn: true
+  directories:
+  - node_modules
+notifications:
+  email: false
+jobs:
+  include:
+    - os: linux
+      dist: bionic
+      node_js: "10"
+    - os: linux
+      dist: bionic
+      node_js: "12"
+    - os: osx
+      osx_image: xcode11.0
+      node_js: "10"
+    - os: osx
+      osx_image: xcode11.0
+      node_js: "12"
+script:
+  - npm run test
+after_success:
+  - npm run report-coverage
